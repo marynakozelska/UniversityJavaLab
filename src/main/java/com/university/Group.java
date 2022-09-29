@@ -26,7 +26,7 @@ public class Group {
     }
 
     //    Методи які дозволяють додати студента до групи
-    public boolean addStudent(Student student) throws InstanceAlreadyExistsException { // return type
+    public boolean addStudent(Student student) throws InstanceAlreadyExistsException {
         if (isInList(student)) {
             throw new InstanceAlreadyExistsException(); // message, gradebooknum
         }
@@ -35,10 +35,7 @@ public class Group {
 
     //    Перевіряти чи нема студентів з такою заліковкою.
     private boolean isInList(Student student) { // call existsByGradeBookNumber
-        Student firstStudent = students.stream()
-                .filter(student1 -> student1.getGradeBookNumber() == student.getGradeBookNumber())
-                .findFirst().orElse(null);
-        return firstStudent != null;
+        return existsByGradeBookNumber(student.getGradeBookNumber());
     }
 
     //    Видаляти студентів
